@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Plan Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #2c3e50;
+            color: white;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .sidebar h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #34495e;
+        }
+
+        .nav-section {
+            margin-bottom: 25px;
+        }
+
+        .nav-section h2 {
+            font-size: 14px;
+            color: #95a5a6;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            padding: 10px 12px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .nav-item:hover {
+            background: #34495e;
+        }
+
+        .nav-item.active {
+            background: #3498db;
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            background: white;
+        }
+
+        .markdown-body {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Markdown styles */
+        .markdown-body h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .markdown-body h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .markdown-body h3 {
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: #34495e;
+        }
+
+        .markdown-body h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .markdown-body p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .markdown-body ul, .markdown-body ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .markdown-body li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .markdown-body pre {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .markdown-body code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .markdown-body pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .markdown-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .markdown-body table th,
+        .markdown-body table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .markdown-body table th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin-left: 0;
+            color: #666;
+            font-style: italic;
+        }
+
+        .markdown-body hr {
+            border: none;
+            border-top: 2px solid #e9ecef;
+            margin: 30px 0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #95a5a6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>🗺️ Travel Plan v2</h1>
+
+            <div class="nav-section">
+                <h2>📅 Days (1-9)</h2>
+                <div class="nav-item" data-file="days/day-01.md">Day 1: Paris → Reims</div>
+                <div class="nav-item" data-file="days/day-02.md">Day 2: Reims → Füssen</div>
+                <div class="nav-item" data-file="days/day-03.md">Day 3: Neuschwanstein</div>
+                <div class="nav-item" data-file="days/day-04.md">Day 4: Füssen → Colmar</div>
+                <div class="nav-item" data-file="days/day-05.md">Day 5: Alsace Wine Route</div>
+                <div class="nav-item" data-file="days/day-06.md">Day 6: Colmar → Paris</div>
+                <div class="nav-item" data-file="days/day-07.md">Day 7: Disneyland Paris</div>
+                <div class="nav-item" data-file="days/day-08.md">Day 8: Paris Sightseeing</div>
+                <div class="nav-item" data-file="days/day-09.md">Day 9: Departure</div>
+            </div>
+
+            <div class="nav-section">
+                <h2>🚗 Components</h2>
+                <div class="nav-item" data-file="components/vehicles/mercedes-v-class.md">Mercedes V-Class</div>
+                <div class="nav-item" data-file="components/accommodations/reims-hotels.md">Reims Hotels</div>
+                <div class="nav-item" data-file="components/accommodations/fussen-hotels.md">Füssen Hotels</div>
+                <div class="nav-item" data-file="components/accommodations/colmar-hotels.md">Colmar Hotels</div>
+                <div class="nav-item" data-file="components/accommodations/paris-hotels.md">Paris Hotels</div>
+                <div class="nav-item" data-file="components/activities/disneyland-paris.md">Disneyland Paris</div>
+                <div class="nav-item" data-file="components/activities/alsace-wine-route.md">Alsace Wine Route</div>
+            </div>
+
+            <div class="nav-section">
+                <h2>📚 Guides</h2>
+                <div class="nav-item" data-file="guides/family-tips.md">Family Tips</div>
+                <div class="nav-item" data-file="guides/packing-list.md">Packing List</div>
+            </div>
+
+            <div class="nav-section">
+                <h2>💰 Budget</h2>
+                <div class="nav-item" data-file="budget/overview.md">Budget Overview</div>
+            </div>
+
+            <div class="nav-section">
+                <h2>📋 Overview</h2>
+                <div class="nav-item" data-file="README.md">README</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="markdown-body">
+                <div class="loading">파일을 선택해주세요 👈</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const content = document.querySelector('.markdown-body');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        // 파일 로드 함수
+        async function loadFile(filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) throw new Error('File not found');
+
+                const markdown = await response.text();
+                const html = marked.parse(markdown);
+                content.innerHTML = html;
+
+                // 스크롤 최상단으로
+                document.querySelector('.content').scrollTop = 0;
+            } catch (error) {
+                content.innerHTML = `
+                    <div class="loading">
+                        ❌ 파일을 불러올 수 없습니다<br>
+                        <small>${filePath}</small>
+                    </div>
+                `;
+            }
+        }
+
+        // 네비게이션 클릭 이벤트
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // 활성 상태 변경
+                navItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                // 파일 로드
+                const filePath = item.getAttribute('data-file');
+                loadFile(filePath);
+            });
+        });
+
+        // 첫 번째 파일 자동 로드 (README)
+        const readmeItem = document.querySelector('[data-file="README.md"]');
+        if (readmeItem) {
+            readmeItem.click();
+        }
+    </script>
+</body>
+</html>

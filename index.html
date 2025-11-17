@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="프랑스-독일 가족여행 플랜 (2025.11.21-29) - 샴페인, 동화 속 성, 알자스 와인, 디즈니랜드">
+    <meta name="keywords" content="프랑스여행, 독일여행, 가족여행, 노이슈반슈타인, 디즈니랜드, 알자스, 샴페인">
+    <meta name="author" content="Travel Planning Team">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="🇫🇷🇩🇪 프랑스-독일 가족여행 플랜 2025">
+    <meta property="og:description" content="9일 8박 | 샴페인 + 동화 속 성 + 알자스 와인 마을 + 디즈니랜드">
+    <meta property="og:image" content="https://your-domain.com/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="🇫🇷🇩🇪 프랑스-독일 가족여행 플랜 2025">
+    <meta property="twitter:description" content="9일 8박 | 샴페인 + 동화 속 성 + 알자스 와인 마을 + 디즈니랜드">
+    <meta property="twitter:image" content="https://your-domain.com/og-image.jpg">
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#3498db">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <title>🇫🇷🇩🇪 프랑스-독일 가족여행 플랜 2025</title>
+
+    <link rel="stylesheet" href="print.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Navigation */
+        .nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .nav-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #2c3e50;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .nav-card .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .nav-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .nav-card p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Features */
+        .features {
+            background: #f8f9fa;
+            padding: 40px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-item .icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .feature-item h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .feature-item p {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .header p {
+                font-size: 16px;
+            }
+
+            .nav {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🇫🇷🇩🇪 프랑스-독일 가족여행 플랜</h1>
+            <p>2025년 11월 21일 - 11월 29일 (9일 8박)</p>
+            <p>샴페인 + 동화 속 성 + 알자스 와인 마을 + 디즈니랜드</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav">
+            <a href="viewer.html" class="nav-card">
+                <div class="icon">📖</div>
+                <h3>여행 계획서 보기</h3>
+                <p>전체 일정과 상세 정보</p>
+            </a>
+
+            <a href="pdf-export.html" class="nav-card">
+                <div class="icon">📄</div>
+                <h3>PDF 내보내기</h3>
+                <p>인쇄 및 공유용 PDF 생성</p>
+            </a>
+
+            <a href="checklist.html" class="nav-card">
+                <div class="icon">✅</div>
+                <h3>체크리스트</h3>
+                <p>실시간 인터랙티브 체크리스트</p>
+            </a>
+
+            <a href="budget-tracker.html" class="nav-card">
+                <div class="icon">💰</div>
+                <h3>예산 트래커</h3>
+                <p>예상 vs 실제 지출 관리</p>
+            </a>
+
+            <a href="emergency.html" class="nav-card">
+                <div class="icon">🚨</div>
+                <h3>긴급 정보</h3>
+                <p>연락처, QR 코드, 중요 정보</p>
+            </a>
+
+            <a href="offline-maps.html" class="nav-card">
+                <div class="icon">🗺️</div>
+                <h3>오프라인 맵</h3>
+                <p>지도 다운로드 가이드</p>
+            </a>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <h2>✨ 주요 기능</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="icon">📱</div>
+                    <h4>모바일 최적화</h4>
+                    <p>스마트폰에서도 완벽</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="icon">💾</div>
+                    <h4>오프라인 저장</h4>
+                    <p>인터넷 없이도 사용</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="icon">🔄</div>
+                    <h4>실시간 동기화</h4>
+                    <p>체크리스트 자동 저장</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="icon">📊</div>
+                    <h4>예산 시각화</h4>
+                    <p>차트로 보는 지출 현황</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="icon">🖨️</div>
+                    <h4>프린트 최적화</h4>
+                    <p>깔끔한 인쇄 레이아웃</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="icon">🔗</div>
+                    <h4>간편 공유</h4>
+                    <p>메신저로 바로 전송</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>🎯 7살 쌍둥이에게 평생 기억 남을 동화 속 성을 보여주고,</p>
+            <p>장인어른께 프랑스 샴페인의 진수를 경험시켜드리며,</p>
+            <p>온 가족이 유럽의 겨울 낭만을 함께 느끼는 9일</p>
+            <p style="margin-top: 20px; opacity: 0.6;">Version 2.0.0 | Created 2025-01-17</p>
+        </div>
+    </div>
+
+    <script>
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker registration failed'));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "name": "travel-plan-france-germany",
+  "version": "2.0.0",
+  "description": "프랑스-독일 가족여행 플랜 (2025.11.21-29) - Interactive Travel Planning System",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "pdf": "node pdf-generator.js --all",
+    "pdf:days": "node pdf-generator.js --days",
+    "pdf:guides": "node pdf-generator.js --guides",
+    "pdf:single": "node pdf-generator.js --single",
+    "serve": "http-server -p 8080 -o",
+    "export:pdf": "node scripts/export-pdf.js",
+    "export:all": "node scripts/export-all.js",
+    "lint": "eslint . --ext .js,.html",
+    "format": "prettier --write \"**/*.{js,html,css,md,json}\"",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "travel",
+    "planning",
+    "france",
+    "germany",
+    "family-trip",
+    "pdf-export",
+    "interactive"
+  ],
+  "author": "Travel Planning Team",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^11.1.1",
+    "chart.js": "^4.4.1",
+    "qrcode": "^1.5.3",
+    "html2pdf.js": "^0.10.1",
+    "localforage": "^1.10.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.11",
+    "puppeteer": "^21.9.0",
+    "http-server": "^14.1.1",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "@types/marked": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/travel-plan-france-germany"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/travel-plan-france-germany/issues"
+  },
+  "homepage": "https://github.com/yourusername/travel-plan-france-germany#readme"
+}

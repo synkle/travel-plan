@@ -1,0 +1,405 @@
+/* ==============================================
+   Print & PDF Optimization Stylesheet
+   프린트 및 PDF 출력 최적화
+   ============================================== */
+
+@media print {
+    /* ========== Page Setup ========== */
+    @page {
+        size: A4;
+        margin: 15mm 10mm;
+    }
+
+    @page :first {
+        margin-top: 20mm;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    /* ========== Body & Layout ========== */
+    body {
+        font-family: 'Noto Sans KR', -apple-system, sans-serif;
+        font-size: 10pt;
+        line-height: 1.4;
+        color: #000;
+        background: white;
+    }
+
+    .container {
+        display: block !important;
+        height: auto !important;
+    }
+
+    /* ========== Hide UI Elements ========== */
+    .sidebar,
+    .no-print,
+    button,
+    .nav-item,
+    .loading {
+        display: none !important;
+    }
+
+    .content {
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+
+    /* ========== Typography ========== */
+    h1 {
+        font-size: 20pt;
+        margin-bottom: 12pt;
+        page-break-after: avoid;
+        border-bottom: 2pt solid #000;
+        padding-bottom: 6pt;
+    }
+
+    h2 {
+        font-size: 16pt;
+        margin-top: 18pt;
+        margin-bottom: 10pt;
+        page-break-after: avoid;
+        color: #000;
+    }
+
+    h3 {
+        font-size: 14pt;
+        margin-top: 14pt;
+        margin-bottom: 8pt;
+        page-break-after: avoid;
+        color: #333;
+    }
+
+    h4 {
+        font-size: 12pt;
+        margin-top: 10pt;
+        margin-bottom: 6pt;
+        page-break-after: avoid;
+    }
+
+    p, ul, ol {
+        orphans: 3;
+        widows: 3;
+        font-size: 10pt;
+        line-height: 1.5;
+    }
+
+    /* ========== Page Breaks ========== */
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+
+    ul, ol, pre, table, blockquote {
+        page-break-inside: avoid;
+    }
+
+    img {
+        page-break-inside: avoid;
+        max-width: 100% !important;
+    }
+
+    /* Day 섹션 페이지 브레이크 */
+    .day-section {
+        page-break-before: always;
+    }
+
+    .day-section:first-child {
+        page-break-before: avoid;
+    }
+
+    /* ========== Tables ========== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9pt;
+        margin: 10pt 0;
+    }
+
+    table th,
+    table td {
+        border: 1pt solid #333;
+        padding: 6pt;
+        text-align: left;
+    }
+
+    table th {
+        background: #f0f0f0 !important;
+        font-weight: bold;
+    }
+
+    /* ========== Lists ========== */
+    ul, ol {
+        margin-left: 15pt;
+        margin-bottom: 10pt;
+    }
+
+    li {
+        margin-bottom: 4pt;
+    }
+
+    /* Checkbox lists */
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12pt;
+        height: 12pt;
+        border: 1pt solid #333;
+        margin-right: 4pt;
+        vertical-align: middle;
+    }
+
+    input[type="checkbox"]:checked::before {
+        content: "✓";
+        display: block;
+        text-align: center;
+        font-size: 10pt;
+        line-height: 12pt;
+    }
+
+    /* ========== Code Blocks ========== */
+    pre {
+        background: #f5f5f5 !important;
+        border: 1pt solid #ddd;
+        padding: 8pt;
+        font-size: 8pt;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    code {
+        background: #f5f5f5 !important;
+        padding: 1pt 3pt;
+        font-size: 9pt;
+        border: 0.5pt solid #ddd;
+    }
+
+    /* ========== Blockquotes ========== */
+    blockquote {
+        border-left: 3pt solid #ccc;
+        padding-left: 12pt;
+        margin-left: 0;
+        margin-right: 0;
+        font-style: italic;
+        color: #555;
+    }
+
+    /* ========== Links ========== */
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 8pt;
+        color: #666;
+    }
+
+    /* 내부 링크는 URL 표시 안 함 */
+    a[href^="#"]:after,
+    a[href^="/"]:after,
+    a[href^="./"]:after,
+    a[href^="../"]:after {
+        content: "";
+    }
+
+    /* ========== Horizontal Rules ========== */
+    hr {
+        border: none;
+        border-top: 1pt solid #ccc;
+        margin: 15pt 0;
+    }
+
+    /* ========== Header & Footer ========== */
+    .print-header {
+        position: running(header);
+        font-size: 9pt;
+        color: #666;
+        border-bottom: 0.5pt solid #ccc;
+        padding-bottom: 4pt;
+        margin-bottom: 10pt;
+    }
+
+    .print-footer {
+        position: running(footer);
+        font-size: 8pt;
+        color: #666;
+        border-top: 0.5pt solid #ccc;
+        padding-top: 4pt;
+        margin-top: 10pt;
+        text-align: center;
+    }
+
+    /* ========== Cover Page ========== */
+    .cover-page {
+        page-break-after: always;
+        text-align: center;
+        padding-top: 100pt;
+    }
+
+    .cover-page h1 {
+        font-size: 28pt;
+        border: none;
+        margin-bottom: 20pt;
+    }
+
+    .cover-page .subtitle {
+        font-size: 16pt;
+        color: #666;
+        margin-bottom: 40pt;
+    }
+
+    .cover-page .metadata {
+        font-size: 11pt;
+        color: #333;
+        margin-top: 60pt;
+    }
+
+    /* ========== Budget Tables ========== */
+    .budget-table {
+        width: 100%;
+        margin: 10pt 0;
+    }
+
+    .budget-table th {
+        background: #e8e8e8 !important;
+    }
+
+    .budget-total {
+        font-weight: bold;
+        background: #f5f5f5 !important;
+    }
+
+    /* ========== Emergency Contact Box ========== */
+    .emergency-contact {
+        border: 2pt solid #000;
+        padding: 10pt;
+        margin: 10pt 0;
+        background: #fffacd !important;
+        page-break-inside: avoid;
+    }
+
+    .emergency-contact h3 {
+        margin-top: 0;
+        color: #d00;
+    }
+
+    /* ========== QR Code ========== */
+    .qr-code {
+        max-width: 80pt !important;
+        height: auto !important;
+        margin: 5pt;
+    }
+
+    /* ========== Timeline ========== */
+    .timeline-item {
+        margin-bottom: 8pt;
+        padding-left: 15pt;
+        border-left: 2pt solid #ccc;
+    }
+
+    .timeline-time {
+        font-weight: bold;
+        font-size: 10pt;
+    }
+
+    /* ========== Status Icons ========== */
+    .status-pending::before { content: "☐ "; }
+    .status-done::before { content: "☑ "; }
+    .status-important::before { content: "⚠ "; }
+    .status-info::before { content: "ℹ "; }
+
+    /* ========== Component Reference Box ========== */
+    .component-ref {
+        background: #f9f9f9 !important;
+        border: 1pt dashed #999;
+        padding: 8pt;
+        margin: 8pt 0;
+        font-size: 9pt;
+    }
+
+    /* ========== Map & Route ========== */
+    .route-map {
+        max-width: 100% !important;
+        height: auto !important;
+        border: 1pt solid #ccc;
+        margin: 10pt 0;
+    }
+
+    /* ========== Packing List Grid ========== */
+    .packing-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10pt;
+        margin: 10pt 0;
+    }
+
+    .packing-category {
+        border: 1pt solid #ccc;
+        padding: 8pt;
+        page-break-inside: avoid;
+    }
+
+    /* ========== Day Summary Box ========== */
+    .day-summary {
+        background: #f0f8ff !important;
+        border: 2pt solid #4682b4;
+        padding: 10pt;
+        margin: 12pt 0;
+        page-break-inside: avoid;
+    }
+
+    .day-summary h4 {
+        margin-top: 0;
+        color: #1e3a8a;
+    }
+
+    /* ========== Notes Section ========== */
+    .notes-box {
+        border: 1pt solid #ccc;
+        min-height: 50pt;
+        padding: 10pt;
+        margin: 10pt 0;
+        background: #fafafa !important;
+    }
+
+    /* ========== Utility Classes ========== */
+    .page-break-before { page-break-before: always; }
+    .page-break-after { page-break-after: always; }
+    .no-page-break { page-break-inside: avoid; }
+
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .font-bold { font-weight: bold; }
+    .font-small { font-size: 8pt; }
+
+    .mt-1 { margin-top: 5pt; }
+    .mt-2 { margin-top: 10pt; }
+    .mb-1 { margin-bottom: 5pt; }
+    .mb-2 { margin-bottom: 10pt; }
+}
+
+/* ==============================================
+   Screen Preview Mode (PDF Preview)
+   ============================================== */
+.pdf-preview-mode {
+    max-width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    padding: 15mm 10mm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pdf-preview-mode .sidebar {
+    display: none;
+}
+
+.pdf-preview-mode .content {
+    max-width: 100%;
+    padding: 0;
+}

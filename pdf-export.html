@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Export - Travel Plan</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="print.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* Control Panel */
+        .control-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .control-panel h1 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        label {
+            font-size: 14px;
+            color: #ecf0f1;
+        }
+
+        select, button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        select {
+            background: white;
+            color: #333;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .btn-primary { background: #3498db; }
+        .btn-success { background: #27ae60; }
+        .btn-info { background: #16a085; }
+        .btn-warning { background: #f39c12; }
+
+        .btn-primary:hover { background: #2980b9; }
+        .btn-success:hover { background: #229954; }
+        .btn-info:hover { background: #138d75; }
+        .btn-warning:hover { background: #d68910; }
+
+        /* Content Area */
+        .content-wrapper {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        .preview-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 297mm;
+        }
+
+        .pdf-content {
+            padding: 20mm 15mm;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            color: #95a5a6;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Status Message */
+        .status-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+        }
+
+        .status-message.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Markdown Styles */
+        .markdown-body h1 {
+            font-size: 28px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .markdown-body h2 {
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .markdown-body h3 {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            color: #34495e;
+        }
+
+        .markdown-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .markdown-body table th,
+        .markdown-body table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .markdown-body table th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .markdown-body pre {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            overflow-x: auto;
+            border-radius: 5px;
+        }
+
+        .markdown-body code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .markdown-body ul, .markdown-body ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .markdown-body li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin: 15px 0;
+            color: #666;
+            font-style: italic;
+        }
+
+        .markdown-body hr {
+            border: none;
+            border-top: 2px solid #e9ecef;
+            margin: 25px 0;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            text-align: center;
+            padding: 100px 20px;
+            page-break-after: always;
+        }
+
+        .cover-page h1 {
+            font-size: 36px;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .cover-page .subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cover-page .metadata {
+            font-size: 14px;
+            color: #333;
+            margin-top: 80px;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Control Panel -->
+    <div class="control-panel">
+        <h1>📄 PDF Export Tool</h1>
+        <div class="controls">
+            <div class="control-group">
+                <label for="fileSelect">파일 선택:</label>
+                <select id="fileSelect">
+                    <option value="">-- 파일을 선택하세요 --</option>
+                    <optgroup label="📅 일정">
+                        <option value="days/day-01.md">Day 1: Paris → Reims</option>
+                        <option value="days/day-02.md">Day 2: Reims → Füssen</option>
+                        <option value="days/day-03.md">Day 3: Neuschwanstein</option>
+                        <option value="days/day-04.md">Day 4: Füssen → Colmar</option>
+                        <option value="days/day-05.md">Day 5: Alsace Wine</option>
+                        <option value="days/day-06.md">Day 6: Colmar → Paris</option>
+                        <option value="days/day-07.md">Day 7: Disneyland</option>
+                        <option value="days/day-08.md">Day 8: Paris</option>
+                        <option value="days/day-09.md">Day 9: Departure</option>
+                    </optgroup>
+                    <optgroup label="📚 가이드">
+                        <option value="guides/family-tips.md">가족 여행 팁</option>
+                        <option value="guides/packing-list.md">짐 싸기 체크리스트</option>
+                    </optgroup>
+                    <optgroup label="💰 예산">
+                        <option value="budget/overview.md">예산 개요</option>
+                    </optgroup>
+                    <optgroup label="📋 전체">
+                        <option value="README.md">README (개요)</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <button id="loadBtn" class="btn-primary">📂 불러오기</button>
+                <button id="exportPdfBtn" class="btn-success" disabled>📥 PDF 다운로드</button>
+                <button id="printBtn" class="btn-info" disabled>🖨️ 인쇄</button>
+                <button id="exportAllBtn" class="btn-warning">📦 전체 PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content-wrapper">
+        <div class="preview-container">
+            <div class="pdf-content">
+                <div class="loading active">
+                    <div class="spinner"></div>
+                    <p>파일을 선택하고 '불러오기' 버튼을 클릭하세요</p>
+                </div>
+                <div id="pdfContent" class="markdown-body" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Message -->
+    <div id="statusMessage" class="status-message"></div>
+
+    <script>
+        // ============================================
+        // State Management
+        // ============================================
+        const state = {
+            currentFile: null,
+            content: null,
+            allFiles: []
+        };
+
+        // ============================================
+        // DOM Elements
+        // ============================================
+        const fileSelect = document.getElementById('fileSelect');
+        const loadBtn = document.getElementById('loadBtn');
+        const exportPdfBtn = document.getElementById('exportPdfBtn');
+        const printBtn = document.getElementById('printBtn');
+        const exportAllBtn = document.getElementById('exportAllBtn');
+        const pdfContent = document.getElementById('pdfContent');
+        const loading = document.querySelector('.loading');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // ============================================
+        // Utility Functions
+        // ============================================
+        function showLoading() {
+            loading.classList.add('active');
+            pdfContent.style.display = 'none';
+        }
+
+        function hideLoading() {
+            loading.classList.remove('active');
+            pdfContent.style.display = 'block';
+        }
+
+        function showStatus(message, type = 'success') {
+            statusMessage.textContent = message;
+            statusMessage.style.background = type === 'success' ? '#27ae60' : '#e74c3c';
+            statusMessage.classList.add('show');
+            setTimeout(() => {
+                statusMessage.classList.remove('show');
+            }, 3000);
+        }
+
+        function enableButtons() {
+            exportPdfBtn.disabled = false;
+            printBtn.disabled = false;
+        }
+
+        function disableButtons() {
+            exportPdfBtn.disabled = true;
+            printBtn.disabled = true;
+        }
+
+        // ============================================
+        // File Loading
+        // ============================================
+        async function loadFile(filePath) {
+            try {
+                showLoading();
+                const response = await fetch(filePath);
+                if (!response.ok) throw new Error('File not found');
+
+                const markdown = await response.text();
+                const html = marked.parse(markdown);
+
+                // Add cover page for complete documents
+                const fileName = filePath.split('/').pop().replace('.md', '');
+                const coverPage = `
+                    <div class="cover-page">
+                        <h1>🇫🇷🇩🇪 프랑스-독일 가족여행</h1>
+                        <div class="subtitle">${fileName.toUpperCase()}</div>
+                        <div class="metadata">
+                            <p><strong>여행 기간:</strong> 2025년 11월 21일 - 11월 29일</p>
+                            <p><strong>구성원:</strong> 6인 가족</p>
+                            <p><strong>생성일:</strong> ${new Date().toLocaleDateString('ko-KR')}</p>
+                        </div>
+                    </div>
+                `;
+
+                pdfContent.innerHTML = coverPage + html;
+                state.currentFile = filePath;
+                state.content = html;
+
+                hideLoading();
+                enableButtons();
+                showStatus(`✅ ${filePath} 불러오기 완료`);
+            } catch (error) {
+                showStatus(`❌ 파일 로드 실패: ${error.message}`, 'error');
+                disableButtons();
+            }
+        }
+
+        // ============================================
+        // PDF Export (using html2pdf)
+        // ============================================
+        async function exportToPDF() {
+            try {
+                showStatus('📄 PDF 생성 중...');
+
+                const element = document.querySelector('.pdf-content');
+                const fileName = state.currentFile
+                    ? state.currentFile.split('/').pop().replace('.md', '.pdf')
+                    : 'travel-plan.pdf';
+
+                const opt = {
+                    margin: [10, 10, 10, 10],
+                    filename: fileName,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+
+                await html2pdf().set(opt).from(element).save();
+                showStatus('✅ PDF 다운로드 완료!');
+            } catch (error) {
+                showStatus(`❌ PDF 생성 실패: ${error.message}`, 'error');
+            }
+        }
+
+        // ============================================
+        // Browser Print
+        // ============================================
+        function printDocument() {
+            window.print();
+        }
+
+        // ============================================
+        // Export All (Combined PDF)
+        // ============================================
+        async function exportAllPDF() {
+            try {
+                showStatus('📦 전체 PDF 생성 중... (시간이 걸릴 수 있습니다)');
+
+                // All files to combine
+                const allFiles = [
+                    'README.md',
+                    'days/day-01.md',
+                    'days/day-02.md',
+                    'days/day-03.md',
+                    'days/day-04.md',
+                    'days/day-05.md',
+                    'days/day-06.md',
+                    'days/day-07.md',
+                    'days/day-08.md',
+                    'days/day-09.md',
+                    'guides/family-tips.md',
+                    'guides/packing-list.md',
+                    'budget/overview.md'
+                ];
+
+                let combinedHTML = `
+                    <div class="cover-page">
+                        <h1>🇫🇷🇩🇪 프랑스-독일 가족여행</h1>
+                        <div class="subtitle">완전 가이드북</div>
+                        <div class="metadata">
+                            <p><strong>여행 기간:</strong> 2025년 11월 21일 - 11월 29일 (9일 8박)</p>
+                            <p><strong>구성원:</strong> 6인 가족 (부부 + 시니어 2명 + 쌍둥이 2명)</p>
+                            <p><strong>테마:</strong> 샴페인 + 동화 속 성 + 알자스 와인 + 디즈니</p>
+                            <p><strong>생성일:</strong> ${new Date().toLocaleDateString('ko-KR')}</p>
+                        </div>
+                    </div>
+                `;
+
+                for (const file of allFiles) {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        const markdown = await response.text();
+                        const html = marked.parse(markdown);
+                        combinedHTML += `<div class="page-break-before">${html}</div>`;
+                    }
+                }
+
+                pdfContent.innerHTML = combinedHTML;
+
+                const opt = {
+                    margin: [10, 10, 10, 10],
+                    filename: 'travel-plan-complete.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+
+                await html2pdf().set(opt).from(document.querySelector('.pdf-content')).save();
+                showStatus('✅ 전체 PDF 다운로드 완료!');
+            } catch (error) {
+                showStatus(`❌ 전체 PDF 생성 실패: ${error.message}`, 'error');
+            }
+        }
+
+        // ============================================
+        // Event Listeners
+        // ============================================
+        loadBtn.addEventListener('click', () => {
+            const selectedFile = fileSelect.value;
+            if (selectedFile) {
+                loadFile(selectedFile);
+            } else {
+                showStatus('⚠️ 파일을 먼저 선택하세요', 'error');
+            }
+        });
+
+        exportPdfBtn.addEventListener('click', exportToPDF);
+        printBtn.addEventListener('click', printDocument);
+        exportAllBtn.addEventListener('click', exportAllPDF);
+
+        // Auto-load README on start
+        window.addEventListener('load', () => {
+            fileSelect.value = 'README.md';
+            loadFile('README.md');
+        });
+    </script>
+</body>
+</html>
