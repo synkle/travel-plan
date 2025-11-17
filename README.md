@@ -8,7 +8,7 @@
 - 장인어른 + 장모님 (시니어 2명)
 - 7살 쌍둥이 (아이 2명)
 
-**테마**: 샴페인 + 동화 속 성 + 알자스 와인 마을 + 디즈니
+**테마**: 동화 속 성 + 알자스 와인 마을 + 디즈니
 
 ---
 
@@ -16,7 +16,6 @@
 
 ```
 "7살 쌍둥이에게 평생 기억 남을 동화 속 성을 보여주고,
- 장인어른께 프랑스 샴페인의 진수를 경험시켜드리며,
  온 가족이 유럽의 겨울 낭만을 함께 느끼는 9일"
 ```
 
@@ -37,10 +36,9 @@ Paris CDG → Reims → Füssen → Colmar → Paris → 귀국
 ### 왜 Plan A를 선택했나?
 
 1. **7살 쌍둥이 평생 기억** - 노이슈반슈타인 성 (디즈니 모델)
-2. **장인어른 특별 경험** - 샴페인 하우스 투어
-3. **총 거리 180km 짧음** - Plan B 대비 운전 피로도 ↓
-4. **2박 숙소 2개** - Füssen, Colmar 짐 관리 편함
-5. **문화 다양성** - 독일+프랑스 크로스오버
+2. **총 거리 180km 짧음** - Plan B 대비 운전 피로도 ↓
+3. **2박 숙소 2개** - Füssen, Colmar 짐 관리 편함
+4. **문화 다양성** - 독일+프랑스 크로스오버
 
 📄 **상세 비교**: [decisions/plan-comparison.md](./decisions/plan-comparison.md)
 📄 **최종 결정 문서**: [decisions/final-decision.md](./decisions/final-decision.md)
@@ -51,8 +49,8 @@ Paris CDG → Reims → Füssen → Colmar → Paris → 귀국
 
 | Day | Date | Route | Distance | Highlights |
 |-----|------|-------|----------|------------|
-| 1 | 11/21 (금) | Paris → Reims | 150km | 17시 도착 → 샴페인 지역 |
-| 2 | 11/22 (토) | Reims → Füssen | 630km | 샴페인 투어 → 알프스 |
+| 1 | 11/21 (금) | Paris → Reims | 150km | 17시 도착 → 휴식 |
+| 2 | 11/22 (토) | Reims → Füssen | 630km | 알프스로 이동 |
 | 3 | 11/23 (일) | Füssen | - | 노이슈반슈타인 성 |
 | 4 | 11/24 (월) | Füssen → Colmar | 230km | 알자스 와인 루트 |
 | 5 | 11/25 (화) | Colmar | - | 와인 마을 투어 |
@@ -67,8 +65,8 @@ Paris CDG → Reims → Füssen → Colmar → Paris → 귀국
 
 ## 🎯 3-Part 여행 구조
 
-### Part 1: Champagne & Culture (Day 1-2)
-- Reims 샴페인 하우스 투어
+### Part 1: Travel to Alps (Day 1-2)
+- Reims 경유
 - 장거리 이동 (630km)
 - 알프스 도착
 
@@ -214,9 +212,9 @@ travel-plan-v2/
 - ✅ 차 안 엔터테인먼트 (태블릿)
 
 ### 장인어른 + 장모님
-- ✅ 샴페인 투어 (특별한 경험)
 - ✅ 2박 숙소 2개 (짐 관리 편함)
 - ✅ 여유로운 일정 (Day 3, 5 휴식)
+- ✅ 편안한 이동
 
 ### 부부 (운전자)
 - ✅ 총 거리 최소화 (1,460km)
