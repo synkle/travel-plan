@@ -183,7 +183,7 @@
             color: #95a5a6;
         }
 
-        /* Responsive */
+        /* Responsive - Mobile */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -192,11 +192,98 @@
             .sidebar {
                 width: 100%;
                 height: auto;
-                max-height: 200px;
+                max-height: none;
+                overflow-y: visible;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            .sidebar h1 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .nav-section {
+                margin-bottom: 15px;
+            }
+
+            .nav-section h2 {
+                font-size: 12px;
+            }
+
+            .nav-item {
+                padding: 8px 10px;
+                font-size: 13px;
             }
 
             .content {
-                padding: 20px;
+                padding: 15px;
+                margin-top: 10px;
+            }
+
+            .markdown-body {
+                font-size: 14px;
+            }
+
+            .markdown-body h1 {
+                font-size: 24px;
+            }
+
+            .markdown-body h2 {
+                font-size: 20px;
+            }
+
+            .markdown-body h3 {
+                font-size: 18px;
+            }
+
+            .markdown-body table {
+                font-size: 12px;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .markdown-body pre {
+                font-size: 12px;
+                overflow-x: auto;
+            }
+        }
+
+        /* Mobile - Small screens */
+        @media (max-width: 480px) {
+            .sidebar {
+                padding: 10px;
+            }
+
+            .sidebar h1 {
+                font-size: 14px;
+            }
+
+            .nav-item {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            .markdown-body {
+                font-size: 13px;
+            }
+
+            .markdown-body h1 {
+                font-size: 20px;
+            }
+
+            .markdown-body h2 {
+                font-size: 18px;
+            }
+
+            .markdown-body h3 {
+                font-size: 16px;
             }
         }
     </style>

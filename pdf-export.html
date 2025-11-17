@@ -274,6 +274,137 @@
             margin-top: 80px;
             line-height: 2;
         }
+
+        /* Responsive - Tablet & Mobile */
+        @media (max-width: 768px) {
+            .control-panel {
+                padding: 10px 15px;
+            }
+
+            .control-panel h1 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+
+            .control-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            select, button {
+                width: 100%;
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .content-wrapper {
+                margin-top: 180px;
+                padding: 10px;
+            }
+
+            .preview-container {
+                max-width: 100%;
+            }
+
+            .pdf-content {
+                padding: 15px 10mm;
+            }
+
+            .markdown-body h1 {
+                font-size: 24px;
+            }
+
+            .markdown-body h2 {
+                font-size: 20px;
+            }
+
+            .markdown-body h3 {
+                font-size: 18px;
+            }
+
+            .markdown-body table {
+                font-size: 12px;
+                display: block;
+                overflow-x: auto;
+            }
+
+            .markdown-body pre {
+                font-size: 12px;
+                overflow-x: auto;
+            }
+
+            .status-message {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                padding: 12px 15px;
+                font-size: 13px;
+            }
+        }
+
+        /* Mobile - Small screens */
+        @media (max-width: 480px) {
+            .control-panel {
+                padding: 8px 10px;
+            }
+
+            .control-panel h1 {
+                font-size: 14px;
+            }
+
+            select, button {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+
+            .content-wrapper {
+                margin-top: 200px;
+                padding: 5px;
+            }
+
+            .pdf-content {
+                padding: 10px 5mm;
+            }
+
+            .markdown-body {
+                font-size: 13px;
+            }
+
+            .markdown-body h1 {
+                font-size: 20px;
+            }
+
+            .markdown-body h2 {
+                font-size: 18px;
+            }
+
+            .markdown-body h3 {
+                font-size: 16px;
+            }
+
+            .cover-page {
+                padding: 50px 10px;
+            }
+
+            .cover-page h1 {
+                font-size: 24px;
+            }
+
+            .cover-page .subtitle {
+                font-size: 16px;
+            }
+
+            .cover-page .metadata {
+                font-size: 12px;
+                margin-top: 40px;
+            }
+        }
     </style>
 </head>
 <body>
