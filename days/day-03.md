@@ -42,7 +42,7 @@ Evening Mission (18:00-21:00):
 ---
 
 ### 🚗 교통
-📦 **Vehicle**: [`vehicles/mercedes-v-class`](../components/vehicles/mercedes-v-class.md)
+📦 **Vehicle**: [`vehicles/renault-trafic`](../components/vehicles/renault-trafic.md) ✅ 실제 예약
 
 **Day 3 특이사항**:
 - 짧은 거리 (호텔 → 성 10km, 15min)

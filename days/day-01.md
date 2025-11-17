@@ -52,8 +52,9 @@
 ## 🚗 교통 컴포넌트
 
 ### 사용 차량
-📦 **Component**: [`vehicles/mercedes-v-class`](../components/vehicles/mercedes-v-class.md)
+📦 **Component**: [`vehicles/renault-trafic`](../components/vehicles/renault-trafic.md) ✅ 실제 예약
 📋 **Booking**: [`rental-booking-confirmed`](../guides/rental-booking-confirmed.md)
+💡 **참고**: [`vehicles/mercedes-v-class`](../components/vehicles/mercedes-v-class.md) (계획 단계)
 
 **예약 차량**: Renault Trafic (LVAR) 9인승 or similar
 - 예약번호: 1196637466
@@ -343,7 +344,8 @@ Day 2 Preview:
 
 ## 🔗 관련 컴포넌트
 
-- 🚗 [Mercedes V-Class](../components/vehicles/mercedes-v-class.md)
+- 🚗 [Renault Trafic 9인승](../components/vehicles/renault-trafic.md) (실제 예약) ✅
+- 💡 [Mercedes V-Class](../components/vehicles/mercedes-v-class.md) (계획 단계 참고)
 - 🛣️ [CDG → Reims 루트](../components/routes/cdg-to-reims.md)
 - 🏨 [Reims 호텔 가이드](../components/accommodations/reims-hotels.md)
 - 🍽️ [Reims 식당 가이드](../components/restaurants/reims-dining.md)

@@ -468,8 +468,9 @@ Europcar 본사:
 
 ## 🔗 관련 문서
 
+- [Renault Trafic 9인승 상세](../components/vehicles/renault-trafic.md) ✅
 - [Europcar 렌탈 약관](./rental-terms-europcar.md)
-- [Mercedes V-Class 차량 정보](../components/vehicles/mercedes-v-class.md)
+- [Mercedes V-Class 참고](../components/vehicles/mercedes-v-class.md)
 - [Day 1 일정](../days/day-01.md)
 - [Day 9 일정](../days/day-09.md)
 

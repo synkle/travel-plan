@@ -33,7 +33,7 @@ Evening Mission (18:00-21:00):
 ## 📦 컴포넌트 참조
 
 ### 🚗 교통
-📦 **Vehicle**: [`vehicles/mercedes-v-class`](../components/vehicles/mercedes-v-class.md)
+📦 **Vehicle**: [`vehicles/renault-trafic`](../components/vehicles/renault-trafic.md) ✅ 실제 예약
 
 **Day 6 특이사항**:
 - 장거리 이동 (450km, 5-6h) - 2번째 longest

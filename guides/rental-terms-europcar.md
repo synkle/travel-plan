@@ -623,7 +623,9 @@ Europcar France:
 
 ## 🔗 관련 문서
 
-- [Mercedes V-Class 차량 상세](../components/vehicles/mercedes-v-class.md)
+- [Renault Trafic 9인승](../components/vehicles/renault-trafic.md) (실제 예약 차량) ✅
+- [Mercedes V-Class 참고](../components/vehicles/mercedes-v-class.md) (계획 단계)
+- [예약 확인서](./rental-booking-confirmed.md)
 - [가족 여행 팁](./family-tips.md)
 - [짐 싸기 리스트](./packing-list.md)
 - [예산 개요](../budget/overview.md)
