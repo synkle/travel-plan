@@ -1,0 +1,283 @@
+# Travel Plan Project - Claude Code Configuration
+
+project:
+  name: "France-Germany Family Travel"
+  type: "travel-planning"
+  dates: "2025.11.21-29"
+  version: "2.0.0"
+
+# 자동 활성화할 스킬
+skills:
+  enabled:
+    - travel-planning
+    - markdown-content
+    - multilingual-docs
+    - pdf-export
+
+  priority:
+    - travel-planning      # 최우선
+    - markdown-content     # 높음
+    - multilingual-docs    # 중간
+    - pdf-export          # 낮음
+
+  auto_activate:
+    travel-planning:
+      keywords: ["여행", "일정", "travel", "itinerary", "timeline", "schedule"]
+      file_patterns: ["days/*.md", "components/**/*.md"]
+
+    markdown-content:
+      keywords: ["문서", "링크", "컴포넌트", "markdown", "link", "component"]
+      file_patterns: ["**/*.md"]
+
+    multilingual-docs:
+      keywords: ["번역", "translate", "프랑스", "독일", "french", "german"]
+      languages: ["ko", "en", "fr", "de"]
+
+    pdf-export:
+      keywords: ["PDF", "export", "print", "인쇄", "출력"]
+      commands: ["npm run pdf"]
+
+# 자율 에이전트 설정
+agents:
+  enabled:
+    - travel-planner
+    - doc-validator
+
+  travel-planner:
+    auto_activate: true
+    triggers:
+      - schedule_conflict
+      - budget_exceeded
+      - component_update
+      - risk_detected
+
+    auto_approve:
+      - link_fix
+      - time_recalculation
+      - budget_sum_update
+      - typo_fix
+
+    require_approval:
+      - schedule_reorder
+      - activity_change
+      - budget_limit_change
+      - accommodation_change
+
+    priority_levels:
+      P0_Critical: "immediate_action"
+      P1_High: "24h_deadline"
+      P2_Medium: "1week_deadline"
+      P3_Low: "optional"
+
+  doc-validator:
+    auto_activate: true
+    triggers:
+      - pre_commit
+      - component_change
+      - pre_deploy
+      - scheduled  # 매일 자정
+
+    schedule: "0 0 * * *"  # Cron: 매일 00:00
+
+    validation_levels:
+      P0: ["broken_internal_links", "missing_components", "required_sections"]
+      P1: ["external_links_404", "format_errors", "budget_mismatch"]
+      P2: ["optional_sections", "style_guide", "unused_components"]
+      P3: ["improvements", "suggestions"]
+
+    auto_fix:
+      safe: ["whitespace", "formatting", "typos", "date_format"]
+      risky: ["link_paths", "section_reorder", "component_refs"]
+
+# MCP 서버 선호도
+mcp_servers:
+  preferred:
+    travel_planning: ["Sequential", "Context7"]
+    markdown_content: ["Sequential"]
+    multilingual: ["Context7", "Sequential"]
+    pdf_export: ["Sequential"]
+
+  fallback:
+    Context7_unavailable: "WebSearch"
+    Sequential_timeout: "native_analysis"
+
+# 프로젝트 구조
+structure:
+  components:
+    vehicles: "차량/렌터카"
+    accommodations: "숙박 시설"
+    activities: "액티비티/관광"
+    restaurants: "식당/레스토랑"
+    routes: "이동 루트"
+
+  days:
+    count: 9
+    format: "day-{:02d}.md"
+    required_sections:
+      - "📅 개요"
+      - "🎯 미션"
+      - "⏰ Timeline"
+      - "📦 컴포넌트 참조"
+      - "📋 체크리스트"
+      - "💰 예산"
+      - "⚠️ 리스크 & 대응"
+
+  guides:
+    types: ["family-tips", "packing-list", "rental-booking", "rental-terms"]
+
+  budget:
+    range: "€4,200-6,000"
+    currency: "EUR"
+    tracking: "daily"
+
+# 품질 기준
+quality:
+  timeline:
+    buffer_percent: 20  # 이동 시간 +20%
+    min_rest_per_day: "2h"
+    max_drive_per_day: "5h"
+
+  budget:
+    tolerance_percent: 10  # ±10%
+    categories: ["교통", "숙박", "식사", "액티비티", "기타"]
+
+  content:
+    required_language: "ko"
+    optional_languages: ["en", "fr", "de"]
+    date_format: "YYYY.MM.DD"
+    time_format: "HH:MM"
+    currency_format: "€XXX"
+
+  links:
+    internal_required: 100  # %
+    external_check_frequency: "weekly"
+    broken_link_tolerance: 0  # 0%
+
+# 문서 템플릿
+templates:
+  day:
+    path: "templates/day-template.md"
+    variables: ["date", "route", "distance", "theme"]
+
+  component:
+    path: "templates/component-template.md"
+    variables: ["type", "name", "category"]
+
+  guide:
+    path: "templates/guide-template.md"
+    variables: ["title", "category"]
+
+# PDF 생성 설정
+pdf:
+  format: "A4"
+  dpi: 300
+  margin:
+    top: "20mm"
+    bottom: "20mm"
+    left: "15mm"
+    right: "15mm"
+
+  fonts:
+    korean: "Noto Sans KR"
+    english: "Roboto"
+    code: "Fira Code"
+
+  output:
+    directory: "dist/pdf"
+    naming: "{type}-{date}.pdf"
+    max_size_mb: 5  # per day
+
+# Git 워크플로우
+git:
+  commit_style: "conventional"
+  require_validation: true
+  auto_lint: true
+
+  hooks:
+    pre_commit:
+      - "doc_validator_quick"
+      - "format_check"
+      - "link_check_internal"
+
+    pre_push:
+      - "doc_validator_full"
+      - "pdf_generation_test"
+
+# 알림 설정
+notifications:
+  slack:
+    enabled: false
+    webhook_url: ""
+
+  email:
+    enabled: false
+    recipients: []
+
+  console:
+    enabled: true
+    log_level: "info"  # debug, info, warn, error
+
+# 성능 최적화
+performance:
+  cache:
+    enabled: true
+    ttl: 3600  # seconds
+
+  parallel:
+    enabled: true
+    max_workers: 3
+
+  compression:
+    enabled: true
+    threshold: "75%"  # context usage
+
+# 디버깅
+debug:
+  enabled: false
+  verbose: false
+  log_file: ".claude/debug.log"
+
+  introspection:
+    auto_activate: false
+    triggers: ["error", "framework_work"]
+
+# 사용자 정의 명령어
+custom_commands:
+  plan-day:
+    description: "특정 일자 상세 일정 생성"
+    agent: "travel-planner"
+    skills: ["travel-planning", "markdown-content"]
+
+  optimize-route:
+    description: "이동 경로 최적화"
+    agent: "travel-planner"
+    skills: ["travel-planning"]
+
+  check-links:
+    description: "모든 링크 검증"
+    agent: "doc-validator"
+    skills: ["markdown-content"]
+
+  translate:
+    description: "다국어 번역"
+    skills: ["multilingual-docs"]
+    args: ["language", "file"]
+
+---
+
+# 사용 예시:
+
+# 1. 새 일정 생성
+# claude /plan-day 10 --route "Paris → London"
+
+# 2. 전체 검증
+# claude /agent doc-validator --full
+
+# 3. PDF 생성
+# npm run pdf:all
+
+# 4. 번역
+# claude /translate fr day-08.md
+
+# 5. 최적화
+# claude "Day 3 일정 최적화해줘"

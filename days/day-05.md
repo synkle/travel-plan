@@ -1,11 +1,11 @@
-# Day 5: Alsace Wine Route (2025.11.25 화)
+# Day 5: Alsace Villages (2025.11.25 화)
 
 ## 📅 개요
 
 **날짜**: 2025년 11월 25일 (화요일)
 **루트**: Colmar → Riquewihr → Eguisheim → Colmar
 **거리**: 40km (왕복)
-**테마**: 알자스 와인 루트 + 전통 마을 + 여유
+**테마**: 알자스 전통 마을 + 산책 + 여유
 
 ---
 
@@ -14,7 +14,7 @@
 ```yaml
 Morning Mission (09:00-12:30):
   ✅ Riquewihr 마을 탐방
-  ✅ 와인 시음 (Cave Hugel)
+  ✅ 구시가 산책
   ✅ 전통 알자스 점심
 
 Afternoon Mission (13:00-16:30):
@@ -32,15 +32,15 @@ Evening Mission (16:30-21:00):
 
 ## 📦 컴포넌트 참조
 
-### 🍷 Main Activity
-📦 **Activity**: [`activities/alsace-wine-route`](../components/activities/alsace-wine-route.md)
+### 🏘️ Main Activity
+**Alsace Villages Tour**
 
 **핵심 포인트**:
 - 2 Villages (Riquewihr + Eguisheim)
-- 와인 시음 (어른들)
 - 전통 마을 산책 (7살 쌍둥이)
+- 하프팀버 건물 구경
 - 여유로운 페이스 (시니어 편함)
-- 비용: €148-325 (6인)
+- 비용: €128-245 (6인)
 
 ---
 
@@ -97,22 +97,19 @@ Evening Mission (16:30-21:00):
   * V-Class OK
   * 도보 5min → 구시가
 
-09:15-10:00 - 구시가 산책
+09:15-10:30 - 구시가 산책
   * Grand Rue (메인 거리)
   * Dolder Gate (중세 성문) 사진
   * 하프팀버 건물 구경
   * 기념품 가게 (구경)
+  * 성벽 산책 (시간 여유)
 
-10:00-10:45 - 와인 시음 (Cave Hugel) ⭐
-  * 주소: 3 Rue de la 1ère Armée
-  * 시음: 3-4종 (Riesling, Gewürztraminer 등)
-  * 비용: €5-10/인 (어른 4인 = €20-40)
-  * 7살 쌍둥이: 주스 + 간식
-  * 구매: 와인 1-2병 (옵션, €15-30/병)
-
-10:45-11:00 - 기념품 & 사진
-  * 마을 곳곳
-  * 가족 단체 사진
+10:30-11:00 - 카페 타임 ⭐
+  * 따뜻한 음료 & 간식
+  * 베이커리 간식
+  * 7살 쌍둥이: 핫초코 + 빵
+  * 휴식
+  * 비용: €20-30 (6인)
 
 11:00-12:00 - 점심
 
@@ -152,13 +149,14 @@ Route: Riquewihr → Eguisheim
   * V-Class OK
   * 도보 5min → 구시가
 
-13:15-14:30 - 원형 마을 산책
+13:15-14:45 - 원형 마을 산책
   * Grand Rue 원형 따라 걷기 (30min)
   * Place du Château (성 광장)
   * 꽃 장식 하프팀버 건물
   * 사진 촬영 (곳곳)
+  * 여유롭게 구경
 
-14:30-15:30 - 카페 간식 타임
+14:45-15:30 - 카페 간식 타임
 
 Café: Pâtisserie Gilg ⭐⭐⭐⭐⭐
   - 주소: 73 Grand Rue
@@ -168,10 +166,9 @@ Café: Pâtisserie Gilg ⭐⭐⭐⭐⭐
     * 커피, 핫초코: €3-5
   - 6인 비용: €18-30
 
-15:30-16:00 - 와인 시음 (옵션)
-  * Cave Léon Baur
-  * 비용: €5-10/인 (€20-40)
-  * or Skip (충분히 즐김)
+15:30-16:00 - 마을 마무리
+  * 마지막 사진 촬영
+  * 기념품 가게 (옵션)
 
 16:00 - 주차장 복귀
   * 화장실
@@ -190,7 +187,7 @@ Café: Pâtisserie Gilg ⭐⭐⭐⭐⭐
 16:30-19:00 - 호텔 휴식
   * 7살 쌍둥이: TV or 장난감
   * 시니어: 낮잠 or 휴식
-  * 부부: 사진 정리, 와인 마시기 (구매했다면)
+  * 부부: 사진 정리, 휴식
 
 19:00-20:30 - 저녁 식사
   * Colmar 구시가 레스토랑 (도보 5min)
@@ -244,8 +241,7 @@ Restaurant: La Maison Rouge
 
 ```yaml
 주차: €5 (Riquewihr만)
-와인 시음: €20-80 (1-2개 Cave)
-와인 구매: €15-60 (1-2병, 옵션)
+카페 (Riquewihr): €20-30
 점심 (Riquewihr): €90-150
 간식 (Eguisheim): €18-30
 저녁 (Colmar): €120-180
@@ -253,8 +249,8 @@ Restaurant: La Maison Rouge
 숙박: €120-180 (Le Colombier 2박째)
 기념품: €10-30 (옵션)
 
-Total: €482-799 (6인)
-Average: €640
+Total: €467-689 (6인)
+Average: €578
 ```
 
 ---
@@ -266,7 +262,7 @@ Average: €640
 Riquewihr:
   - "동화 마을!" 설명
   - 하프팀버 = "과자 집"
-  - 와인 시음 중: 주스 + 간식
+  - 카페 타임: 핫초코 + 빵
   - 사진 찍기 놀이
 
 Eguisheim:
@@ -283,16 +279,12 @@ Eguisheim:
 
 ### 장인어른 + 장모님
 ```yaml
-와인 시음:
-  - 즐거움! ⭐⭐⭐⭐⭐
-  - Riesling, Gewürztraminer
-  - 구매 (기념품 or 선물)
-
 마을 산책:
-  - 천천히
+  - 천천히 여유롭게
   - 돌길 주의
-  - 휴식 자주 (카페)
+  - 휴식 자주 (카페 2회)
   - 사진 많이
+  - 하프팀버 건축 감상
 
 호텔 복귀:
   - 일찍 (16:30)
@@ -311,10 +303,7 @@ Eguisheim:
   - 목도리
   - 편한 신발 (돌길)
   - 레이어링
-
-와인 셀러:
-  - 지하 = 10-12°C
-  - 겉옷 챙기기
+  - 가족 모자/장갑 (사진용)
 ```
 
 ---
@@ -342,19 +331,19 @@ Eguisheim:
 
 ## ⚠️ 주의사항
 
-### 운전
-```yaml
-⚠️ 와인 시음 후:
-  - 1-2잔 OK
-  - 물 많이
-  - 점심 식사 후
-  - 프랑스 기준: 0.05%
-```
-
 ### 주차
 ```yaml
 Riquewihr: €5 (유료)
 Eguisheim: FREE (무료!) ⭐
+```
+
+### 마을 산책
+```yaml
+⚠️ 돌길 주의:
+  - 중세 마을 = 돌길
+  - 시니어 천천히
+  - 7살 쌍둥이 손잡기
+  - 카페 자주 휴식
 ```
 
 ---
@@ -368,7 +357,7 @@ Eguisheim: FREE (무료!) ⭐
 ### Riquewihr
 - [ ] 09:00 도착 & 주차
 - [ ] 09:15 구시가 산책
-- [ ] 10:00 와인 시음 (Cave Hugel)
+- [ ] 10:30 카페 타임
 - [ ] 11:00 점심 (Au Trotthus)
 - [ ] 12:30 Eguisheim 출발
 
@@ -391,12 +380,13 @@ Eguisheim: FREE (무료!) ⭐
 ### 2 Villages 완벽
 ```yaml
 ✅ Riquewihr (오전):
-  - 와인 시음 중심
+  - 구시가 산책 중심
+  - 카페 타임 (휴식)
   - 점심 (전통 음식)
   - 3.5h 충분
 
 ✅ Eguisheim (오후):
-  - 산책 중심
+  - 원형 마을 산책 중심
   - 카페 간식
   - 3h 충분
 ```
@@ -406,15 +396,16 @@ Eguisheim: FREE (무료!) ⭐
 ✅ 16:30 호텔 복귀 (일찍!)
   - 체력 회복
   - 내일 Paris 장거리 대비
+  - 카페 2회로 휴식 충분
 ```
 
 ---
 
 **Day**: `5`
 **Date**: 2025.11.25 (화)
-**Theme**: Alsace Wine Route (Riquewihr + Eguisheim)
-**Highlight**: 알자스 와인 시음 + 동화 마을 ⭐⭐⭐⭐⭐
+**Theme**: Alsace Villages (Riquewihr + Eguisheim)
+**Highlight**: 알자스 동화 마을 + 여유 산책 ⭐⭐⭐⭐⭐
 **Distance**: 40km (왕복)
-**Success Key**: 여유로운 페이스 → 와인 시음 → 16:30 복귀
+**Success Key**: 여유로운 페이스 → 카페 2회 → 16:30 복귀
 
-🍷 **Alsace Wine & Villages!** 🏘️
+🏘️ **Alsace Traditional Villages!** 🌸
