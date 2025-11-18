@@ -600,3 +600,13 @@ Average: €570
 **Success Key**: 09:00 출발 → 휴게소 관리 → 18:00 Füssen 도착
 
 🚗 **To the Alps!** 🏔️
+
+
+
+curl -X POST "https://openapi.swit.io/v2/subscriptions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTaGoyVW5UZE5sS1R3TkM0OGtNT1NMcE5ZWmU1bmdCbiIsImV4cCI6MTc2NDAzNzcwOCwiaXNzIjoiaHR0cHM6Ly9zd2l0LmlvIiwic3ViIjoiMTkwOTA2MDAzMjU2ODMzMjEiLCJjbXBfaWQiOiIxOTA5MDYwMDMyNTY4MzMyMSIsImFwcHNfaWQiOiIyNTExMTgwMjE2NTg3OUQ5S1ZaTCIsImFwcF91c2VyX2lkIjoiMjUxMTE4MDIxNjU4Nzg1NTRVVzYiLCJpc3N1ZV90eXBlIjoyfQ.sdxe5eGFue_My9PAvXQak5DMnfDkcIZExDFvPGlirUbSGRYGpAMtpEepP5MV2yVnbcQv0EA-lVXQK7nKDPN2Ng" \
+  -d '{
+    "resource_type": "approvals.requests",
+    "target_url": "https://your-server.com/swit/approvals/callback"
+  }'
